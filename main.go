@@ -43,7 +43,7 @@ func deployStreamHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, step := range pipelineSteps {
-		fmt.Fprintf(w, "data: %s\n\n", step)
+		_, _ = fmt.Fprintf(w, "data: %s\n\n", step)
 		w.(http.Flusher).Flush()
 		time.Sleep(1200 * time.Millisecond)
 	}
