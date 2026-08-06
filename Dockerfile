@@ -22,7 +22,7 @@ FROM gcr.io/distroless/base
 # Copy the binary from the previous stage
 COPY --from=base /app/main .
 
-# Copy the static files from the previous stage
+# Copy the static files from the previous stagee
 COPY --from=base /app/static ./static
 
 # Expose the port on which the application will run
