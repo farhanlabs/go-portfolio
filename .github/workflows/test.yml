@@ -8,13 +8,14 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Checkoutttttttts
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Test
         run: |
-          echo "GitHub Actions is working!"
-          uname -a
+          echo "Hello from Self Hosted Runner"
+          hostname
+          whoami
+          pwd
