@@ -27,7 +27,7 @@ func contactHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/contact.html")
 }
 
-// Complete DevOps + Kubernetes Pipeline Simulation SSE Stream
+// DevOps Pipeline Simulation
 func deployStreamHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/event-stream")
 	w.Header().Set("Cache-Control", "no-cache")
@@ -62,7 +62,9 @@ func main() {
 	http.HandleFunc("/api/deploy", deployStreamHandler)
 
 	log.Println("CloudPulse Server running on http://0.0.0.0:8080")
-	if err := http.ListenAndServe("0.0.0.0:8080", nil); err != nil {
+
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
 		log.Fatal(err)
 	}
-}// trigger
+}
