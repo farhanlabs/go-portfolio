@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: go-portfolio-ingress
+  annotations:
+    # Yeh line cert-manager ko batayegi ki issuer kaun hai
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  # Yeh TLS block HTTPS secure connection enable karega
+  tls:
+  - hosts:
+    - go-portfolio.duckdns.org   # Yahan apna DuckDNS domain daalein
+    secretName: go-portfolio-tls-secret  # Yeh cert-manager khud-b-khud banayega
+  rules:
+  - host: go-portfolio.duckdns.org   # Yahan bhi apna DuckDNS domain daalein
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: go-portfolio-service
+            port:
+              number: 80

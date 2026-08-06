@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Md Farhan Raza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">Farhan Raza</a>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="/" class="text-slate-400 hover:text-slate-100 transition">Home</a>
+                <a href="/about" class="text-slate-400 hover:text-slate-100 transition">About</a>
+                <a href="/projects" class="text-blue-400 transition">Projects</a>
+                <a href="/dashboard" class="text-slate-400 hover:text-slate-100 transition">Dashboard</a>
+                <a href="/contact" class="text-slate-400 hover:text-slate-100 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <h1 class="text-4xl font-extrabold tracking-tight mb-4">Featured Projects</h1>
+        <p class="text-slate-400 mb-12">A collection of cloud architectures, automation workspaces, and web applications.</p>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Project 1 -->
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">BharatOps</h3>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">Open Source</span>
+                    </div>
+                    <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                        A public repository workspace compiled with cloud blueprints, infrastructure modules, and automation scripts.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80">
+                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-slate-300">Terraform</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-slate-300">AWS</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-slate-300">GitHub Actions</span>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-white">CloudPulse Orchestrator</h3>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Interactive</span>
+                    </div>
+                    <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                        Real-time infrastructure pipeline visualizer and logs streamer built natively with Golang and Server-Sent Events.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80">
+                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-slate-300">Go</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-slate-300">SSE</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-slate-300">Tailwind CSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

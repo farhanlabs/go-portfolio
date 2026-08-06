@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-portfolio-deployment
+  labels:
+    app: go-portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-portfolio
+  template:
+    metadata:
+      labels:
+        app: go-portfolio
+    spec:
+      containers:
+      - name: go-portfolio
+        image: docker.io/farhan0911/go-portfolio:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
