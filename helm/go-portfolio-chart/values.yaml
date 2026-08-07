@@ -1,10 +1,12 @@
+# Image & Replica Configuration
 image:
   repository: docker.io/farhan0911/go-portfolio
   tag: "31219653258"
   pullPolicy: Always
-  replicaCount: 2
 
-  # Resource Requests & Limits
+replicaCount: 2
+
+# Resource Requests & Limits
 resources:
   limits:
     cpu: 500m
@@ -20,13 +22,14 @@ autoscaling:
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
 
+# Grafana Configuration
 grafana:
   grafana.ini:
     smtp:
       enabled: true
-      host: smtp.gmail.com:587
-      user: mdfarhanraza001@gmail.com
+      host: "smtp.gmail.com:587"
+      user: "mdfarhanraza001@gmail.com"
       password: "mnmq iztm xzxb yvzg"
       skip_verify: true
-      from_address: mdfarhanraza001@gmail.com
-      from_name: Grafana Alerts
+      from_address: "mdfarhanraza001@gmail.com"
+      from_name: "Grafana Alerts"
