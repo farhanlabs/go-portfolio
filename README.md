@@ -1,135 +1,346 @@
-```markdown
-<div align="center">
-
-# 🚀 Go Portfolio — Cloud-Native Production-Grade Web Application
-
-<p>
-  <img src="https://img.shields.io/badge/Go-1.22%2B-blue?style=for-the-badge&logo=go" alt="Go">
-  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker" alt="Docker">
-  <img src="https://img.shields.io/badge/Kubernetes-Orchestrated-326CE5?style=for-the-badge&logo=kubernetes" alt="Kubernetes">
-  <img src="https://img.shields.io/badge/Helm-Package%20Manager-0F1689?style=for-the-badge&logo=helm" alt="Helm">
-  <img src="https://img.shields.io/badge/ArgoCD-GitOps-EF7b4d?style=for-the-badge&logo=argocd" alt="ArgoCD">
-  <img src="https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions">
+<!-- Banner -->
+<p align="center">
+  <img src="static/images/banner.png" alt="Go Portfolio Banner" width="100%">
 </p>
 
-*A robust, enterprise-grade cloud-native web application showcasing high-availability architecture, automated CI/CD pipelines, GitOps continuous delivery, and advanced Kubernetes orchestration.*
+<h1 align="center">🚀 Go Portfolio — Cloud-Native Production-Grade Web Application</h1>
 
-</div>
+<p align="center">
+A production-grade Go web application demonstrating end-to-end cloud-native delivery: Docker containerization, Kubernetes orchestration, Helm packaging, GitHub Actions CI/CD, and ArgoCD GitOps.
+</p>
+
+<p align="center">
+
+![Go](https://img.shields.io/badge/Go-1.22-00ADD8?logo=go&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Container-2496ED?logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-1.30-326CE5?logo=kubernetes&logoColor=white)
+![Helm](https://img.shields.io/badge/Helm-Charts-0F1689?logo=helm&logoColor=white)
+![ArgoCD](https://img.shields.io/badge/ArgoCD-GitOps-EF7B4D?logo=argo&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI/CD-2088FF?logo=githubactions&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+</p>
+
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#️-architecture">Architecture</a> •
+  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-production-features">Features</a> •
+  <a href="#-project-structure">Structure</a> •
+  <a href="#-run-locally">Run Locally</a> •
+  <a href="#️-deploy-using-helm">Deploy</a> •
+  <a href="#-screenshots">Screenshots</a>
+</p>
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+## 📖 Overview
 
-| Layer | Technology / Tool | Implementation Details |
-| :--- | :--- | :--- |
-| **Backend** | **Go (Golang)** | High-performance HTTP server with automated unit testing (`main_test.go`) |
-| **Frontend** | **HTML5 / CSS / JS** | Responsive multi-page layout (`static/` dashboard, projects, courses, about, contact, home) |
-| **Containerization** | **Docker** | Multi-stage optimized container builds ensuring minimal image footprint |
-| **Package Management**| **Helm** | Templated Kubernetes manifests (`go-portfolio-chart`) for dynamic releases |
-| **Orchestration & Scale**| **Kubernetes & HPA** | Self-healing pods with resource governance and CPU-based autoscaling |
-| **Continuous Delivery** | **ArgoCD & GitHub Actions** | Fully automated GitOps deployment loop triggered via secure CI/CD workflows |
+This repository demonstrates a **production-style, cloud-native deployment** of a Go web application, built to reflect how real-world platform and DevOps teams ship software — not just how to run `go run main.go`.
 
----
+Every layer of the stack was deliberately added to mirror a production environment:
 
-## 🌟 Key Production Features
-
-* **⚡ Horizontal Pod Autoscaler (HPA):** Dynamically scales application replica counts (min: 2, max: 5) based on real-time CPU utilization thresholds.
-* **🛡️ Liveness & Readiness Probes:** Automated health checks (`/` endpoint monitoring) to safely manage traffic routing and automated crash-recovery restarts.
-* **📦 Resource Governance:** Enforced strict CPU and Memory requests/limits to protect cluster nodes from resource exhaustion.
-* **🔄 GitOps Workflow:** Zero-downtime automated synchronization where code commits trigger GitHub Actions container builds, dynamic tag updates, and ArgoCD cluster reconciliation.
+- **Docker** → consistent, portable builds across environments
+- **Kubernetes** → self-healing, declarative orchestration
+- **Helm** → templated, versioned, environment-agnostic configuration
+- **GitHub Actions** → automated build, test, and image publishing
+- **ArgoCD (GitOps)** → the cluster's state is driven by Git, not manual `kubectl apply`
+- **HPA + Probes + Resource Limits** → the app behaves predictably under load and fails safely
 
 ---
 
-## 📁 Project Directory Structure
+## 🏗️ Architecture
+
+```
+                        Developer
+                            │
+                            ▼
+                     Git Push (GitHub)
+                            │
+                            ▼
+                  GitHub Actions CI/CD
+                            │
+        ┌───────────────────┼────────────────────┐
+        │                   │                    │
+        ▼                   ▼                    ▼
+    Build App          Run Tests         Docker Build
+                                                │
+                                                ▼
+                                        Push Image to
+                                          Docker Hub
+                                                │
+                                                ▼
+                                     Update Helm Image Tag
+                                                │
+                                                ▼
+                                           Git Repository
+                                                │
+                                                ▼
+                                             ArgoCD
+                                                │
+                                                ▼
+                                         Kubernetes Cluster
+                                                │
+        ┌────────────────────────────────────────┼────────────────────────┐
+        ▼                                        ▼                        ▼
+ Deployment                              Service                 Horizontal Pod Autoscaler
+        │
+        ▼
+     Running Pods
+```
+
+**Why GitOps?** Instead of engineers running `kubectl apply` by hand, ArgoCD continuously watches the Git repo and syncs the cluster to match it. Git becomes the single source of truth — every deployment is versioned, auditable, and revertible with a `git revert`.
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Go (Golang) |
+| Frontend | HTML • CSS • JavaScript |
+| Containerization | Docker |
+| CI/CD | GitHub Actions |
+| GitOps | ArgoCD |
+| Orchestration | Kubernetes |
+| Package Manager | Helm |
+| Scaling | Horizontal Pod Autoscaler (HPA) |
+| Ingress | NGINX Ingress |
+| TLS | cert-manager + Let's Encrypt |
+
+---
+
+## 🚀 Production Features
+
+### ✅ GitHub Actions CI/CD
+- Build the Go application
+- Run unit tests
+- Build the Docker image
+- Push the image to Docker Hub
+- Update the Helm chart's image tag
+- Trigger automatic GitOps deployment via ArgoCD
+
+### ☸️ Kubernetes
+- Deployment — manages Pod lifecycle and rolling updates
+- Service — stable internal networking for Pods
+- Ingress — routes external traffic into the cluster
+- Self-healing Pods — Kubernetes replaces failed containers automatically
+- Rolling updates — zero-downtime deployments
+
+### 📈 Horizontal Pod Autoscaler
+Automatically scales Pods based on CPU utilization, so the app handles traffic spikes without manual intervention.
+
+```yaml
+minReplicas: 2
+maxReplicas: 5
+targetCPUUtilizationPercentage: 80
+```
+
+### 💻 Resource Management
+Explicit requests and limits so the scheduler places Pods correctly and no single Pod can starve the node.
+
+```yaml
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+```
+
+This guarantees baseline resources, prevents noisy-neighbor issues, improves scheduling decisions, and keeps the deployment production-ready.
+
+### ❤️ Health Checks — Liveness & Readiness Probes
+
+Both probes are configured on the Deployment so Kubernetes knows exactly when a Pod is alive versus ready to serve traffic — the two are not the same thing, and conflating them is a common production mistake.
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 15
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 3
+```
+
+**Liveness Probe** — checks whether the application process is alive.
+- If it fails → Kubernetes kills and restarts the container. This recovers apps stuck in a deadlock or unresponsive state.
+
+**Readiness Probe** — checks whether the application is ready to receive traffic.
+- If it fails → the Pod is pulled out of the Service's endpoint list. Traffic stops flowing to it, but the container itself is **not** restarted — this matters during startup, slow dependency checks, or temporary overload.
+
+---
+
+## 📂 Project Structure
 
 ```text
-GO/
+go-portfolio/
+│
 ├── .github/
 │   └── workflows/
-│       └── ci-cd.yml              # Automated CI/CD build & image tag update pipeline
+│       └── ci-cd.yml              # GitHub Actions pipeline — build, test, Docker build/push, Helm tag update
+│
 ├── helm/
-│   └── go-portfolio-chart/        # Helm package manager chart
+│   └── go-portfolio-chart/
 │       ├── templates/
-│       │   ├── deployment.yaml    # Core deployment spec with Probes & Resource limits
-│       │   ├── hpa.yaml           # Horizontal Pod Autoscaler configuration
-│       │   ├── ingress.yaml       # Ingress routing rules & load balancing
-│       │   ├── issuer.yaml        # SSL/TLS Certificate issuer configuration
-│       │   └── service.yaml       # Kubernetes internal service mapping
-│       ├── .helmignore            # Helm packaging ignore rules
-│       ├── Chart.yaml             # Chart metadata definitions
-│       └── values.yaml            # Configurable parameters (replicas, resources, image tags)
-├── k8s/                           # Raw Kubernetes manifests backup repository
-├── static/                        # Frontend UI assets & pages
-│   ├── images/                    # Asset media and graphics repository
+│       │   ├── deployment.yaml    # Pod spec: container image, probes, resource requests/limits
+│       │   ├── service.yaml       # Stable internal network endpoint for the Pods
+│       │   ├── ingress.yaml       # External traffic routing + TLS termination
+│       │   ├── hpa.yaml           # Autoscaling rules (min/max replicas, CPU target)
+│       │   └── issuer.yaml        # cert-manager issuer for automated TLS certificates
+│       │
+│       ├── values.yaml            # Centralized, environment-agnostic configuration (image tag, replicas, resources)
+│       ├── Chart.yaml             # Helm chart metadata (name, version, description)
+│       └── .helmignore            # Files excluded when packaging the chart
+│
+├── k8s/                           # Raw Kubernetes manifests for quick local testing without Helm
+│
+├── static/
+│   ├── images/                    # Banner and README screenshot assets
+│   ├── home.html                  # Landing page
 │   ├── about.html                 # About page
 │   ├── contact.html               # Contact page
-│   ├── courses.html               # Courses catalog page
-│   ├── dashboard.html             # Administrative dashboard UI
-│   └── home.html                  # Landing page
-├── Dockerfile                     # Multi-stage Docker packaging configuration
-├── go.mod                         # Go module dependencies
-├── LICENSE                        # Open-source licensing terms
-├── main.go                        # Core web application server implementation
-├── main_test.go                   # Backend unit testing suite
-└── README.md                      # Comprehensive project documentation
+│   ├── dashboard.html             # Dashboard view
+│   └── projects.html              # Projects showcase page
+│
+├── Dockerfile                     # Multi-stage build — compiles the Go binary, ships a minimal runtime image
+├── go.mod                         # Go module definition and dependency versions
+├── go.sum                         # Dependency checksums for reproducible builds
+├── main.go                        # Application entrypoint — HTTP server and routes
+├── main_test.go                   # Unit tests for the application
+├── LICENSE                        # MIT License
+└── README.md                      # Project documentation (this file)
+```
 
+**Why this structure?** Application code, infrastructure-as-code (Helm), and CI/CD pipeline definitions are kept in clearly separated directories. This mirrors how real engineering teams organize repos, so a reviewer — technical or non-technical — can immediately locate app logic vs. deployment config vs. automation.
+
+---
+
+## 🔄 CI/CD Pipeline
+
+```
+Developer
+    │
+    ▼
+Git Push
+    │
+    ▼
+GitHub Actions
+    │
+    ├── Checkout Code
+    ├── Build
+    ├── Unit Tests
+    ├── Docker Build
+    ├── Push Docker Image
+    └── Update Helm Values
+             │
+             ▼
+        Git Repository
+             │
+             ▼
+           ArgoCD
+             │
+             ▼
+     Kubernetes Cluster
 ```
 
 ---
 
-## 📊 Visual System Overview & Proofs
+## 📸 Screenshots
 
-### 🔄 CI/CD & GitOps Deployment Workflow
+| ArgoCD | Kubernetes Pods |
+|---|---|
+| ![ArgoCD](static/images/argocd.png) | ![Pods](static/images/pods.png) |
 
-```text
-[ Developer Push ] ──> [ GitHub Actions CI ] ──> [ Docker Hub Image ] ──> [ Helm Values Update ] ──> [ ArgoCD Sync ] ──> [ Kubernetes Cluster ]
-
-```
-
-### 🖼️ Dashboard & Cluster Proofs
-
-*(To display your screenshots here, save your images inside the `static/images/` folder and link them below)*
-
-* **ArgoCD Synchronized State:**
-```markdown
-![ArgoCD Sync](static/images/your-argocd-screenshot.png)
-
-```
-
-
-* **HPA Scaling Verification:**
-```markdown
-![HPA Scaling](static/images/your-hpa-screenshot.png)
-
-```
-
-
+| Horizontal Pod Autoscaler | Application |
+|---|---|
+| ![HPA](static/images/hpa.png) | ![Application](static/images/application.png) |
 
 ---
 
-## 🚀 Getting Started Locally
+## 🚀 Run Locally
 
-### 1. Clone the Repository
-
+### Clone the Repository
 ```bash
-git clone [https://github.com/farhanlabs/go-portfolio.git](https://github.com/farhanlabs/go-portfolio.git)
+git clone https://github.com/farhanlabs/go-portfolio.git
 cd go-portfolio
-
 ```
 
-### 2. Run Locally via Docker
-
+### Run using Go
 ```bash
-docker build -t go-portfolio:latest .
-docker run -p 8080:8080 go-portfolio:latest
+go mod tidy
+go run main.go
+```
+App available at: `http://localhost:8080`
 
+### Run using Docker
+```bash
+docker build -t go-portfolio .
+
+docker run -d \
+  -p 8080:8080 \
+  go-portfolio
 ```
 
-### 3. Deploy via Helm Chart
+---
 
+## ☸️ Deploy using Helm
+
+**Install**
 ```bash
 helm install go-portfolio ./helm/go-portfolio-chart
+```
 
+**Upgrade**
+```bash
+helm upgrade go-portfolio ./helm/go-portfolio-chart
+```
+
+**Uninstall**
+```bash
+helm uninstall go-portfolio
 ```
 
 ---
+
+## 📊 Useful Commands
+
+```bash
+kubectl get pods
+kubectl get svc
+kubectl get ingress
+kubectl get hpa
+kubectl get deployments
+```
+
+---
+
+## 👨‍💻 Author
+
+**Md Farhan Rza**
+DevOps Engineer • Full Stack Developer • Founder, Zevix Digital
+
+[![GitHub](https://img.shields.io/badge/GitHub-farhanlabs-181717?logo=github&logoColor=white)](https://github.com/farhanlabs)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin&logoColor=white)](#)
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<p align="center">⭐ If this project helped you understand cloud-native deployment patterns, consider starring the repository.</p>
