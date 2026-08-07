@@ -24,7 +24,7 @@ autoscaling:
 
 # Grafana Configuration
 grafana:
-  grafana.ini:
+  grafanaIni:
     smtp:
       enabled: true
       host: "smtp.gmail.com:587"
