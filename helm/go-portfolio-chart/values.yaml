@@ -19,3 +19,14 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
+
+grafana:
+  grafana.ini:
+    smtp:
+      enabled: true
+      host: smtp.gmail.com:587
+      user: mdfarhanraza001@gmail.com
+      password: "mnmq iztm xzxb yvzg"
+      skip_verify: true
+      from_address: mdfarhanraza001@gmail.com
+      from_name: Grafana Alerts
