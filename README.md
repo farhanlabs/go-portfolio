@@ -1,3 +1,4 @@
+```markdown
 <div align="center">
 
 # 🚀 Go Portfolio — Cloud-Native Production-Grade Web Application
@@ -70,3 +71,48 @@ GO/
 ├── main.go                        # Core web application server implementation
 ├── main_test.go                   # Backend unit testing suite
 └── README.md                      # Comprehensive project documentation
+
+```
+
+---
+
+## 📊 Visual System Overview & Proofs
+
+### 🔄 CI/CD & GitOps Deployment Workflow
+
+```text
+[ Developer Push ] ──> [ GitHub Actions CI ] ──> [ Docker Hub Image ] ──> [ Helm Values Update ] ──> [ ArgoCD Sync ] ──> [ Kubernetes Cluster ]
+
+```
+
+* **ArgoCD Sync Status:** Verified green, synchronized state across all template resources.
+* **HPA Load Testing Response:** Automated horizontal replica scaling validated under concurrent stress workloads.
+
+---
+
+## 🚀 Getting Started Locally
+
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/your-username/go-portfolio.git](https://github.com/your-username/go-portfolio.git)
+cd go-portfolio
+
+```
+
+### 2. Run Locally via Docker
+
+```bash
+docker build -t go-portfolio:latest .
+docker run -p 8080:8080 go-portfolio:latest
+
+```
+
+### 3. Deploy via Helm Chart
+
+```bash
+helm install go-portfolio ./helm/go-portfolio-chart
+
+```
+
+---
