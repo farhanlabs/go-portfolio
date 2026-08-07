@@ -2,4 +2,20 @@ image:
   repository: docker.io/farhan0911/go-portfolio
   tag: "31201268804"
   pullPolicy: Always
-  replicaCount: 3
+  replicaCount: 2
+
+  # Resource Requests & Limits
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Horizontal Pod Autoscaling (HPA) Settings
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80

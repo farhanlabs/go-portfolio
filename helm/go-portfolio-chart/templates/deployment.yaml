@@ -1,22 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: go-portfolio-deployment
   labels:
     app: go-portfolio
+
 spec:
+  # Number of Pods to create
   replicas: {{ .Values.image.replicaCount }}
+
   selector:
     matchLabels:
       app: go-portfolio
+
   template:
     metadata:
       labels:
         app: go-portfolio
+
     spec:
       containers:
-      - name: go-portfolio
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-        imagePullPolicy: {{ .Values.image.pullPolicy }} 
-        ports:
-        - containerPort: 8080
+        - name: go-portfolio
+
+          # Docker image
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+          # Always pull latest image
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          ports:
+            - containerPort: 8080
+
+          # CPU & Memory Requests/Limits
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
