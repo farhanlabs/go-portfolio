@@ -1,6 +1,6 @@
 image:
   repository: docker.io/farhan0911/go-portfolio
-  tag: "31218431903"
+  tag: "31218566413"
   pullPolicy: Always
   replicaCount: 2
 
