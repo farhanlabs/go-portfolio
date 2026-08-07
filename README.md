@@ -3,12 +3,14 @@
 
 # 🚀 Go Portfolio — Cloud-Native Production-Grade Web Application
 
-[![Go Version](https://img.shields.io/badge/Go-1.22%2B-blue?style=for-the-badge&logo=go)](https://golang.org/)
-[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker)](https://www.docker.com/)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestrated-326CE5?style=for-the-badge&logo=kubernetes)](https://kubernetes.io/)
-[![Helm](https://img.shields.io/badge/Helm-Package%20Manager-0F1689?style=for-the-badge&logo=helm)](https://helm.sh/)
-[![ArgoCD](https://img.shields.io/badge/ArgoCD-GitOps-EF7b4d?style=for-the-badge&logo=argo)](https://argoproj.github.io/)
-[![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+<p>
+  <img src="https://img.shields.io/badge/Go-1.22%2B-blue?style=for-the-badge&logo=go" alt="Go">
+  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker" alt="Docker">
+  <img src="https://img.shields.io/badge/Kubernetes-Orchestrated-326CE5?style=for-the-badge&logo=kubernetes" alt="Kubernetes">
+  <img src="https://img.shields.io/badge/Helm-Package%20Manager-0F1689?style=for-the-badge&logo=helm" alt="Helm">
+  <img src="https://img.shields.io/badge/ArgoCD-GitOps-EF7b4d?style=for-the-badge&logo=argocd" alt="ArgoCD">
+  <img src="https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions">
+</p>
 
 *A robust, enterprise-grade cloud-native web application showcasing high-availability architecture, automated CI/CD pipelines, GitOps continuous delivery, and advanced Kubernetes orchestration.*
 
@@ -63,8 +65,7 @@ GO/
 │   ├── contact.html               # Contact page
 │   ├── courses.html               # Courses catalog page
 │   ├── dashboard.html             # Administrative dashboard UI
-│   ├── home.html                  # Landing page
-│   └── projects.html              # Portfolio projects showcase
+│   └── home.html                  # Landing page
 ├── Dockerfile                     # Multi-stage Docker packaging configuration
 ├── go.mod                         # Go module dependencies
 ├── LICENSE                        # Open-source licensing terms
@@ -85,8 +86,24 @@ GO/
 
 ```
 
-* **ArgoCD Sync Status:** Verified green, synchronized state across all template resources.
-* **HPA Load Testing Response:** Automated horizontal replica scaling validated under concurrent stress workloads.
+### 🖼️ Dashboard & Cluster Proofs
+
+*(To display your screenshots here, save your images inside the `static/images/` folder and link them below)*
+
+* **ArgoCD Synchronized State:**
+```markdown
+![ArgoCD Sync](static/images/your-argocd-screenshot.png)
+
+```
+
+
+* **HPA Scaling Verification:**
+```markdown
+![HPA Scaling](static/images/your-hpa-screenshot.png)
+
+```
+
+
 
 ---
 
@@ -95,7 +112,7 @@ GO/
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/your-username/go-portfolio.git](https://github.com/your-username/go-portfolio.git)
+git clone [https://github.com/farhanlabs/go-portfolio.git](https://github.com/farhanlabs/go-portfolio.git)
 cd go-portfolio
 
 ```
